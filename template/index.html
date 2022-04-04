@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Stock!</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container text-center">
+      <h1 class="jumbotron">World Happiness Data</h1>
+      <div>
+        <!-- write a for loop that lists out the data and accesses the values using dot notation. -->
+          {% for happy in happiness %}
+          <div class="col-lg-6 offset-4">
+              <div class="card" style="width: 20rem;">
+                  <div class="card-body">
+                    <h3 class="card-title">{{ item.Country }}</h3>
+                    <h4 class="card-subtitle mb-2 text-muted">Year: {{ item.Year }}</h4>
+                    <h5 class="card-subtitle mb-2 text-muted">Overall Happiness Score: {{ item.Happiness }}</h5>
+                    <p class="card-text">GDP per Capita: {{ item.GDP per Capita}}</p>
+                    <p class="card-text">Social Support: {{ item.Social Support}}</p>
+                    <p class="card-text">Life Expectancy: {{ item.Life Expectancy}}</p>
+                    <p class="card-text">Freedom: {{ item.Freedom}}</p>
+                    <p class="card-text">Corruption: {{ item.Corruption}}</p>
+                    <p class="card-text">Generosity: {{ item.Generosity}}</p>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+
+      </div>
+    </div>
+  </body>
+
+</html>
