@@ -1,0 +1,119 @@
+---
+title: "Happiness Investigation"
+output: html_notebook
+---
+
+```{r Reading in the CSV file}
+file <- 'happiness_years.csv'
+happiness <- read.csv(file)
+
+happiness
+```
+
+```{r Filtering Groups for Paired Samples T-Test}
+library ("dplyr")
+# filtering data for pre-covid years (2018-2019)
+pre_covid = filtered_happy <- filter(happiness, Year %in% c(2018,2019))
+pre_covid
+
+# filtering data for during/post-covid years (2020-2021)
+post_covid = filtered_happy <- filter(happiness, Year %in% c(2020,2021))
+post_covid 
+```
+
+```{r Descriptive Statistics Pre-COVID}
+max(pre_covid$Happiness)
+min(pre_covid$Happiness)
+mean(pre_covid$Happiness)
+median(pre_covid$Happiness)
+sd(pre_covid$Happiness)
+```
+
+```{r Descriptive Statistics Post-COVID}
+max(post_covid$Happiness)
+min(post_covid$Happiness)
+mean(post_covid$Happiness)
+median(post_covid$Happiness)
+sd(post_covid$Happiness)
+```
+
+```{r Testing Assumptions for T-Test: Normal Distribution}
+# generating a histogram
+hist(filtered_happy$Happiness, xlab = "Happiness", col = "yellow", border = "black")
+
+# empirical test of normality (Shapiro-Wilk)
+shapiro.test(filtered_happy$Happiness)
+```
+
+
+```{r Wilcoxon Signed Rank Test since normality assumption was violated}
+# this method does not assume a normal distribution
+wilcox.test(pre_covid$Happiness, post_covid$Happiness, paired = TRUE)
+```
+```{r Checking Assumptions for a Multiple Regression: Linear Relationship}
+#Happiness versus GDP
+plot(x = filtered_happy$GDP.per.Capita,y = filtered_happy$Happiness,
+     xlab = "GDP per Capita",
+     ylab = "Happiness",
+     main = "Happiness Versus GDP per Capita")
+#Happiness versus Social Support
+plot(x = filtered_happy$Social.Support,y = filtered_happy$Happiness,
+     xlab = "Social Support",
+     ylab = "Happiness",
+     main = "Happiness Versus Social Support")
+#Happiness versus Life Expectancy
+plot(x = filtered_happy$Life.Expectancy,y = filtered_happy$Happiness,
+     xlab = "LIfe Expectancy",
+     ylab = "Happiness",
+     main = "Happiness Versus Life Expectancy")
+#Happiness versus Freedom
+plot(x = filtered_happy$Freedom,y = filtered_happy$Happiness,
+     xlab = "Freedom",
+     ylab = "Happiness",
+     main = "Happiness Versus Freedom")
+#Happiness versus Corruption
+plot(x = filtered_happy$Corruption,y = filtered_happy$Happiness,
+     xlab = "Corruption",
+     ylab = "Happiness",
+     main = "Happiness Versus Corruption")
+#Happiness versus Generosity
+plot(x = filtered_happy$Generosity,y = filtered_happy$Happiness,
+     xlab = "Generosity",
+     ylab = "Happiness",
+     main = "Happiness Versus Generosity")
+
+```
+
+```{r Checking Assumptions for a Multiple Regression: No Multicollinearity}
+model <- lm(Happiness ~ GDP.per.Capita + Social.Support + Freedom + Life.Expectancy, data=filtered_happy)
+summary(model)
+# checking VIF value
+#install.packages("car")
+library(car)
+vif(model)
+
+# visualizing VIF values
+vif_values <- vif(model)
+
+# generating a horizontal bar chart to display the VIF value
+barplot(vif_values, main = "VIF Values", horiz = TRUE, col = "steelblue")
+
+# add vertical line at 5
+abline(v = 5, lwd = 3, lty =2)
+
+# generating correlation matrix for predictor variables
+predictors <- filtered_happy[,c("GDP.per.Capita", "Social.Support", "Freedom", "Life.Expectancy")]
+cor(predictors)
+
+```
+
+```{r Regression without the highly correlated dependent variables}
+#
+```
+
+
+
+
+
+
+
