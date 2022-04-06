@@ -1,86 +1,81 @@
 // Store our API endpoint as queryUrl.
-// var queryUrl = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2021-01-01&endtime=2021-01-02&maxlongitude=-69.52148437&minlongitude=-123.83789062&maxlatitude=48.74894534&minlatitude=25.16517337";
-var data_file = "/happiness_data/j.json";
+
+var data_file = "happiness_data/j.json";
 
 
 // Perform a GET request to the query URL.
-d3.json(data_file ).then(function (data) {
-  console.log(data);
-  console.log(data[0].Country);
+d3.json(data_file ).then(function (data){
+//   console.log(data);
 
-// const countryArray = new Set(data.map(item => item.Country))
-// console.log(countryArray)
+  countryArray = [];
+
+//   console.log("test traversing")
+//   console.log(`Latitude: ${data[0].latitude}`)
+//   console.log(`5th Country's Freedom: ${data[4].Metrics[3].Freedom}`)
+//   console.log(`2nd Country's Name: ${data[1].Country}`)
+
+  for (var i = 0; i < data.length; i++) {
+    var happinessSum = 0;
+    
+    happinessArray = [];
+
+    let country = data[i].Country;
+    let lat = data[i].latitude;
+    let long = data[i].longitude;
+    for (var j = 0; j < data[i].Metrics.length; j++){
+    // console.log(`Data length: ${data.length}`);
+        
+    let happiness = data[i].Metrics[j].Happiness;
+    happinessArray.push(happiness); 
+    happinessSum += happiness
+    }
+    // console.log(`Sum of ${data[i].Country} Freedom is ${happinessSum}`);
+    // console.log(happinessArray);
+    // console.log(Math.max(happinessArray));
+    var max_of_array = Math.max.apply(Math, happinessArray);
+    // console.log(`Max of ${data[i].Country} is ${max_of_array}`)
+
+    var min_of_array = Math.min.apply(Math, happinessArray);
+    // console.log(`Min of ${data[i].Country} is ${min_of_array}`)
+
+    var num_obs = happinessArray.length
+    // console.log(num_obs);
+
+    const median = arr => {
+        const mid = Math.floor(arr.length / 2),
+          nums = [...arr].sort((a, b) => a - b);
+        return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+      };
+    let med_of_array = median(happinessArray);
+
+    var average = happinessSum/num_obs;
+
+    let roundOff = (num, places) => {
+        const x = Math.pow(10,places);
+        return Math.round(num * x) / x;
+        }
+
+    // console.log("min rounded to two spots")    
+    var rounded_min = roundOff(min_of_array,2);
+    // console.log("avg rounded to two spots")    
+    var rounded_avg = roundOff(average,2);
+    // console.log("med rounded to two spots")    
+    var rounded_med = roundOff(med_of_array,2);
+    // console.log("max rounded to two spots")    
+    var rounded_max = roundOff(max_of_array,2);
+      
+    // console.log(`Happiness Average: ${average}`)
+    let obs= [country, lat, long, rounded_min, rounded_avg, rounded_med, rounded_max]
+    countryArray.push(obs)
+
+    
+}
+
+console.log(countryArray);
+
+console.log(countryArray[4][0]);
+
+
 });
 
-// grab each array item and add to the option tag
 
-// countryArray2.forEach((Country) => {
-//     select.append("option").text(Country).property("value", Country);
-// });
-
-// // access the list of names for selection
-// // use # in fron of selDataset since it's an id tag
-// var select = d3.select("#selDataset");
-// console.log("drop down section");
-// console.log(select);
-
-
-
-// //     // grab 1st observation when initialized
-//     let country1 = countryArray2[0];
-
-// //     // call on funciton to pull in metadata
-//     demographicData(country1);
-
-// //     buildBarChart(name1);
-
-// //     buildBubbleGraph(name1);
-
-// //     buildGauge(name1);
-
-//  // closes d3
-// }
-
-//  function optionChanged(item)
-// {
-//     // console.log(item);
-//     //pick up new metadata to grab
-//     demographicData(item);
-
-//     // // call function to create bar graph
-//     // buildBarChart(item);
-
-//     // // call function to create bubble graph
-//     // buildBubbleGraph(item);
-
-//     // // call function to create bubble graph
-//     // buildGauge(item);
-
-// }
-
-// function demographicData(name)
-// {
-//     // console.log(name);
-
-//     d3.json("samples.json").then((data) =>
-//     {       
-//     let countryData = data[0];
-//     // console.log(metaData);
-
-//     // filter on name to capture appropriate metadata element based on name
-//     let result = countryData.filter(countryOutput => countryeOutput.id == name);
-//     let resultName = result[0];
-//     console.log(resultName);
-
-
-//     // clear out prior demographics populated each time run through
-//     d3.select("#sample-metadata").html("");
-
-//     // populate the demographic information, appending to
-//     Object.entries(resultName).forEach(([key, value]) => {
-//         d3.select("#sample-metadata").append("h5").text(`${key}: ${value}`);
-//     });
-// });
-
-
- initialize();
