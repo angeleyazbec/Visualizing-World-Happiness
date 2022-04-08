@@ -1,6 +1,7 @@
 // Dashboard JavaScript
 var happiness_data = "/happiness_data/j.json";
 
+<<<<<<< HEAD
 //write statistic in to a interactive table
 function mean(score) {
     let total = 0;
@@ -45,12 +46,19 @@ function standardDeviation(score) {
 d3.json(happiness_data).then(function (data) {
 
 
+=======
+var happiness_data = "/happiness_data/j.json";
+d3.json(happiness_data).then(function (data) {
+>>>>>>> 0c953e57051002ad90a02272c81f6e8d5f998dff
 //   console.log(data);
   let country = data[0].Country;
 //   console.log(country)
   let metrics = data[0].Metrics
 //   console.log(metrics)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0c953e57051002ad90a02272c81f6e8d5f998dff
   let countries = data.map (
       function(d){
           return d.Country
@@ -62,15 +70,19 @@ let countrymetrics = []
 let countryhappiness = []
 let pre2020happiness = []
 let post2020happiness = []
+<<<<<<< HEAD
 let pre2020Top10HappyCountries = []
 let post2020Top10HappyCountries = []
 
+=======
+>>>>>>> 0c953e57051002ad90a02272c81f6e8d5f998dff
 for(var i = 0; i < data.length; i++){
     countryName.push(data[i].Country);
     countrymetrics.push(data[i].Metrics);
     let m = data[i].Metrics
     // console.log(m)
     for (var j =0; j <m.length; j++){
+<<<<<<< HEAD
         if (data[i].Metrics[j].Year == 2018 || data[i].Metrics[j].Year == 2019 ){
                 pre2020happiness.push(data[i].Metrics[j].Happiness)
                 pre2020Top10HappyCountries.push({
@@ -690,3 +702,53 @@ Plotly.newPlot("plot4", traceData4, layout4);
 // }
 
 // initialize();
+=======
+        if (data[i].Metrics[j].Year == 2018 || data[i].Metrics[j].Year == 2019 )
+                pre2020happiness.push(data[i].Metrics[j].Happiness)
+        else if (data[i].Metrics[j].Year > 2019)
+        post2020happiness.push(data[i].Metrics[j].Happiness)
+        // console.log(data[i].Metrics)
+        // countryhappiness.push(data[i].Metrics[j].Happiness);
+    }
+    
+}
+// console.log(countryName)
+// console.log(countrymetrics)
+console.log(countryhappiness)
+console.log(mean(pre2020happiness))
+console.log(mean(post2020happiness))
+console.log(variance(pre2020happiness))
+console.log(variance(post2020happiness))
+console.log(standardDeviation(pre2020happiness))
+console.log(standardDeviation(post2020happiness))
+
+});
+
+// Mean
+function mean(score) {
+    let total = 0;
+    for (let i = 0; i < score.length; i++) {
+      total += score[i];
+    }
+    let meanValue = total / score.length;
+    return meanValue;
+  }
+
+// Variance
+function variance(score) {
+    let meanValue = mean(score);
+    let total = 0;
+    for (let i = 0; i < score.length; i++) {
+      total += (score[i] - meanValue) ** 2;
+    }
+    let varianceValue = total / score.length; 
+    return varianceValue;
+  }
+
+// Standard deviation is the square root of the variance
+function standardDeviation(score) {
+    let varianceValue = variance(score);
+    let standardDeviationValue = Math.sqrt(varianceValue);
+    return standardDeviationValue;
+  }
+>>>>>>> 0c953e57051002ad90a02272c81f6e8d5f998dff
