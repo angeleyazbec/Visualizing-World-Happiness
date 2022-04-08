@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Project 3.A - Visualizing Data</title>
-
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <!-- D3 -->
   <script src="https://d3js.org/d3.v5.min.js"></script>
 
@@ -20,6 +22,8 @@
   <!-- Our CSS -->
   <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
+
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
@@ -52,14 +56,38 @@
         </div>
       </nav>
   <!-- The div that holds our map -->
-  <div id="dashboard-id"></div>
+  <div id="plot1"></div>
+  <div id="plot2"></div>
+  <div id="plot3"></div>
+  <div id="plot4"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Student Grades -->
+        <table class="grades table">
+          <thead>
+            <tr>
+              <th>Statistics Indicator of Happy Score</th>
+              <th>Pre2020(2018&2019)</th>
+              <th>Pre2020(2020&2021)</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="static/js/data.js"></script>
+  <script type="text/javascript" src="static/js/dashboard.js"></script>
+
 
   <footer>
     <p>&copy; Team A, 2022 Bootcamp!</p>
   </footer>
 
   <!-- Our JavaScript file -->
-  <script type="text/javascript" src="static/js/dashboard.js"></script>
+
 </body>
 
 </html>
