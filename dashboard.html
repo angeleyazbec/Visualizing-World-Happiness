@@ -82,8 +82,27 @@
   <script type="text/javascript" src="static/js/dashboard.js"></script>
 
 
-  <footer>
-    <p>&copy; Team A, 2022 Bootcamp!</p>
+  <footer style="position: fixed; bottom: 0; font-weight: bold;">
+    <div class="center" style="background-color: #fbe498;">
+      <h6>Project 3, Group 4...featuring <span class="animate typed"></span></h6>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+    <script src="static/js/typed.js"></script>
+    <script>
+      var typed = new Typed(".typed", {
+        strings: [
+          "Angele Yazbec",
+          "Meina Bian",
+          "Norma Espinosa",
+          "Daniel Garza",
+          "Adam Freedman"
+        ],
+        typeSpeed: 250,
+        backDelay: 150,
+        backSpeed: 100,
+        loop: true,
+      });
+    </script>
   </footer>
 
   <!-- Our JavaScript file -->
