@@ -78,7 +78,7 @@ for(var i = 0; i < data.length; i++){
                     Year: data[i].Metrics[j].Year
                 })
                 }
-        else if (data[i].Metrics[j].Year > 2019)
+        else if (data[i].Metrics[j].Year > 2019){
                 // post2020happiness.push(data[i])
                 post2020happiness.push(data[i].Metrics[j].Happiness)
                 post2020Top10HappyCountries.push({
@@ -86,13 +86,11 @@ for(var i = 0; i < data.length; i++){
             countryname: data[i].Country,
             Year: data[i].Metrics[j].Year
         })
+      }
         // console.log(data[i].Metrics)
         // countryhappiness.push(data[i].Metrics[j].Happiness);
     }
     // data.forEach(item => Number(item.Metrics.Happiness))
-
-
-
 }
 
 console.log("newvariance",variance(post2020Top10HappyCountries))
@@ -257,8 +255,8 @@ console.log(post2020Top10NotHappyCountriesSort);
 //     //console.log(top10Happyscore)
 // });
 let trace4 = {
-    x: top10_3.map(row => `${row.countryname} ${row.Year}`),
-    y: top10_3.map(row => row.happines_score),
+    x: top10_4.map(row => `${row.countryname} ${row.Year}`),
+    y: top10_4.map(row => row.happines_score),
     type: "bar"
   };
 // Data trace array
