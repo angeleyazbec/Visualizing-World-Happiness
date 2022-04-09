@@ -187,7 +187,8 @@ console.log("traceData",traceData)
 
 // Apply the group barmode to the layout
 let layout = {
-    title: "pre2020Top10RecordHappyCountries"
+    title: "Pre-COVID - Top 10 Happy Countries (2018-2019)",
+    color: "rgb(142,124,195)"
   };
 
   // Render the plot to the div tag with id "plot"
@@ -215,7 +216,7 @@ console.log("----------------")
 
 // Apply the group barmode to the layout
 let layout2 = {
-    title: "post2020Top10RecordHappyCountries"
+    title: "Post-COVID - Top 10 Happy Countries (2020-2021)"
   };
 
   // Render the plot to the div tag with id "plot"
@@ -242,7 +243,7 @@ console.log("----------------")
 
 // Apply the group barmode to the layout
 let layout3 = {
-    title: "pre2020Top10RecordNotHappyCountriesSort"
+    title: "Pre-COVID - Top 10 Unhappy Countries (2018-2019)"
   };
 
   // Render the plot to the div tag with id "plot"
@@ -268,7 +269,7 @@ console.log("----------------")
 
 // Apply the group barmode to the layout
 let layout4 = {
-    title: "post2020Top10NotHappyRecordCountriesSort"
+    title: "Post-COVID - Top 10 Unhappy Countries (2020-2021)"
   };
 
   // Render the plot to the div tag with id "plot"
