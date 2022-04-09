@@ -1,5 +1,5 @@
 // Dashboard JavaScript
-var happiness_data = "/happiness_data/j.json";
+var happiness_data = "https://raw.githubusercontent.com/afreedman4564/Project-3-Visualizing-Data/main/happiness_data/j.json";
 
 //write statistic in to a interactive table
 function mean(score) {
