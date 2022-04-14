@@ -2,6 +2,8 @@
 
 #### https://angeleyazbec.github.io/Visualizing-World-Happiness/
 
+#### Tableau Viz: https://public.tableau.com/views/GlobalHappiness_16499524123990/COVIDStory?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link
+
 ### Project ETL:
 * Extracted data from the World Happiness Reports (2018-2021) in Kaggle.
 
